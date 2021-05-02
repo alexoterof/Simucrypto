@@ -1,0 +1,33 @@
+<a routerLink="/landing">Back home</a>
+<div>
+    <img src="{{coin.image}}">
+</div>
+<div>
+    <p>Name: {{coin.name}}</p>
+</div>
+<div>
+    <p>Current price: {{coin.current_price}}€</p>
+</div>
+<div>
+    <p>Last 24h: {{coin.price_change_24h}}</p>
+</div>
+<div>
+    <p>Market capitalizacion: {{coin.market_cap}}€</p>
+</div>
+
+
+<button pButton type="button" label="Try me!" (click)="toggleHistoric()"></button>
+
+<div *ngIf="monthAndNotDay">
+    <h3>Month data</h3>
+</div>
+<div *ngIf="!monthAndNotDay">
+    <h3>Day data</h3>
+</div>
+<div style="display: block; width: 400px">
+    <canvas id="month" height="200">{{ monthChart }}</canvas>
+</div>
+<br>
+
+
+<button pButton type="button" label="Buy!" (click)="buy()"></button>

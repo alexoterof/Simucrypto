@@ -1,0 +1,7 @@
+<br>
+Available coins -> 
+<div class="lista-monedas">
+    <p-listbox [options]="coins" [(ngModel)]="selectedCoin" optionLabel="name" (onClick)="coinClicked()"></p-listbox>
+    <button pButton type="button " label="My wallets" class="p-button-round p-button-info" routerLink="/wallet"></button>
+      
+</div>

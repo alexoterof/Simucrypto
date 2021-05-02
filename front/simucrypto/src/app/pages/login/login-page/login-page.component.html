@@ -1,0 +1,11 @@
+<div class="">
+  <h1>Login page</h1>
+        <input type="text" placeholder="login" [(ngModel)]="user.username">
+        <input type="password" placeholder="password" [(ngModel)]="user.password">
+        <br>
+        <button pButton type="button" class="p-button-success"  label="Login" (click)="login()"></button>
+        <button pButton type="button " label="Register" class="p-button-warning" routerLink="/register"></button>
+      
+</div>
+
+<p-toast position="bottom-center"></p-toast>
