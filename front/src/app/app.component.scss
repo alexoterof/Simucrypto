@@ -3,4 +3,9 @@
     max-width: 33%;
     margin-right: auto;
     margin-left:auto;
+    height: 100%;
+}
+
+:host ::ng-deep{
+    
 }

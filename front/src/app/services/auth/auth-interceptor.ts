@@ -11,12 +11,17 @@ export class AuthInterceptor implements HttpInterceptor {
     
 intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let jwt: string = localStorage.getItem('jwt');
-    if (!jwt && req.url != environment.apiHost+"user/login"){
-        this.router.navigate([environment.loginPage]);    
-    }
+    if (!jwt && req.url != environment.apiHost+"user/login")
+        this.router.navigate([environment.loginPage]);
     if(jwt == null)
         return next.handle(req);
-        
+    const expiringEpoch = (JSON.parse(atob(jwt.split('.')[1]))).exp;
+    const currentEpoch = (new Date).getTime();
+    if(currentEpoch < expiringEpoch){
+        localStorage.removeItem('jwt');
+        this.router.navigate([environment.loginPage]);    
+    }
+    
     return next.handle(req.clone({
                     setHeaders: {
                     'Authorization': `Bearer ${jwt}`

@@ -7,7 +7,7 @@ import { UserService } from 'src/app/services/user/user.service';
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.css'],
+  styleUrls: ['./login-page.component.scss'],
   providers: [MessageService]
 })
 export class LoginPageComponent implements OnInit {
@@ -26,6 +26,8 @@ export class LoginPageComponent implements OnInit {
     console.log(this.user);
     this.userService.login(this.user).subscribe(
       (response) => {
+        console.log("response");
+        console.log(response);
         localStorage.setItem('jwt', response.jwt);
         this.router.navigate(['landing'])
       },
