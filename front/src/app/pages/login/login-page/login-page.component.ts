@@ -23,18 +23,17 @@ export class LoginPageComponent implements OnInit {
 
 
   login(){
-    console.log(this.user);
     this.userService.login(this.user).subscribe(
       (response) => {
-        console.log("response");
-        console.log(response);
         localStorage.setItem('jwt', response.jwt);
         this.router.navigate(['landing'])
       },
       (error) => {
         console.log(error);
-        this.messageService.add({severity: "error", summary: 'No se pudo iniciar sesion', detail: 'Comprueba tu usuario o contraseña'})
+        this.messageService.add({severity: "error", summary: 'Invalid credentials', detail: 'User name and password do not match '})
       }
     )
   }
+
+  
 }

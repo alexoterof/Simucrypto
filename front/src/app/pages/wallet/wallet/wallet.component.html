@@ -1,18 +1,26 @@
-<a routerLink="/landing">Back home</a>
 <h1>My wallets</h1>
-<p-table [value]="wallets">
-    <ng-template pTemplate="header">
-        <tr>
-            <th>Name</th>
-            <th>Quantity</th>
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-wallet>
-        <tr>
-            <td>{{wallet.coinname}}</td>
-            <td>{{wallet.cash}}</td>
-        </tr>
-    </ng-template>
-</p-table>
+<div class="wallets-list">
+    <div class="header">
+        <span class="name">Name</span>
+        <span class="quantity">Quantity</span>
+        <span class="actions">Actions</span>
+    </div>
+    <div class="list-body" *ngFor="let wallet of wallets">
+        <div class="wallet">
+            <span class="name">{{wallet.coinname}}</span>
+            <span class="quantity">{{wallet.cash}}</span>
+            <div *ngIf="wallet.coinname != 'eur'" class="actions">
+                <span ><button pButton pRipple type="button" icon="pi pi-eject" class="p-button-rounded p-button-help"></button></span>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <h3>Total ammount: {{totalAmmount}}€</h3>
+</div>
 
-<button pButton type="button " label="Refill 1K €" class="p-button-round p-button-info" (click)="refill()"></button>
+<div class="bottom-buttons">
+    <button pButton type="button " label="Refill 1K €" class="p-button-round p-button-info" (click)="refill()"></button>
+    <button pButton type="button" label="My communities" class="p-button-round p-button-info" routerLink="/landing"></button>
+    <button pButton type="button" label="Back home" class="p-button-round p-button-secondary" routerLink="/landing"></button>
+</div>

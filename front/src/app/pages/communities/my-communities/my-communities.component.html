@@ -1,0 +1,14 @@
+<h1>My communities</h1>
+<div class="small-margin-top">
+    <div class="communities-list" *ngFor="let community of communities">
+        <div class="community" (click)="detailOf(community)">
+            <span >{{community.name}}</span>
+        </div>
+    </div>    
+</div>
+
+<div class="bottom-buttons">
+    <button pButton type="button" label="Find communities" class="p-button-round p-button-info" routerLink="/communities/all"></button>
+    <button pButton type="button " label="New community" class="p-button-round p-button-info" routerLink="/communities/new"></button>
+    <button pButton type="button" label="Back home" class="p-button-round p-button-secondary" routerLink="/landing"></button>
+</div>

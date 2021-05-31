@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { environment } from 'src/environments/environment';
-import { CoinMin } from 'src/app/model/coin-min';
-import { CoinDetails } from 'src/app/model/coin-detail';
+import { CoinMin } from 'src/app/model/coin/coin-min';
+import { CoinDetails } from 'src/app/model/coin/coin-detail';
 import { HistoricData } from 'src/app/model/historic-data';
 
 @Injectable({

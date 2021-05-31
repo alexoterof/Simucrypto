@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WalletMin } from 'src/app/model/wallet-min';
+import { CoinService } from 'src/app/services/coin/coin.service';
 import { OrderService } from 'src/app/services/order/order.service';
 import { WalletService } from 'src/app/services/wallet/wallet.service';
 
@@ -10,9 +11,13 @@ import { WalletService } from 'src/app/services/wallet/wallet.service';
 })
 export class WalletComponent implements OnInit {
   wallets: WalletMin[];
-
+  totalAmmount: number;
   constructor(private walletService: WalletService,
-              private orderService: OrderService) { }
+              private orderService: OrderService,
+              private cryptoService: CoinService,) {
+                
+    this.totalAmmount = 0;
+  }
 
   ngOnInit(): void {
     this.fetchWallets();
@@ -20,9 +25,27 @@ export class WalletComponent implements OnInit {
 
   fetchWallets(){
     this.walletService.findWallets().subscribe(
-      (response) => {
-        this.wallets = response;
-        console.log(this.wallets);
+      (wallets) => {
+        this.wallets = wallets;
+        this.cryptoService.findAllPrices().subscribe(
+          (coinsPrices) => {
+            this.totalAmmount = 0;
+            this.wallets.forEach(wallet => {
+              if(wallet.coinname == "eur"){
+                this.totalAmmount += wallet.cash;
+              }
+              coinsPrices.forEach(coinPrice => {
+                if(wallet.coinname == coinPrice.name){
+                  this.totalAmmount += coinPrice.price * wallet.cash;
+                }
+              })
+            })
+            this.totalAmmount = <number><any>this.totalAmmount.toFixed(2);
+          }, 
+          (error) => {
+            console.log(error);
+          }
+        )
       },
       (error) => {
         console.log(error);

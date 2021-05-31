@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { Chart } from 'chart.js';
-import { CoinDetails } from 'src/app/model/coin-detail';
+import { CoinDetails } from 'src/app/model/coin/coin-detail';
 import { CoinService } from 'src/app/services/coin/coin.service';
 
 @Component({
@@ -10,18 +10,21 @@ import { CoinService } from 'src/app/services/coin/coin.service';
   styleUrls: ['./coin-details.component.scss']
 })
 export class CoinDetailsComponent implements OnInit {
-  monthChart: Chart;
-  dayChart: Chart;
+  coin: CoinDetails;
+  chart: Chart;
   dayData: number[];
   monthData: number[];
-  monthAndNotDay: boolean = true;
-  coin: CoinDetails;
+  monthAndNotDay: boolean;
+  graphTitle: string;
 
   data: any;
 
   constructor(private activatedRouter: ActivatedRoute,
               private router: Router,
-              private cryptoService: CoinService) { }
+              private cryptoService: CoinService) {
+                this.monthAndNotDay = true;
+                this.graphTitle = "Monthly historic";
+               }
 
   ngOnInit(): void {
     this.coin = new CoinDetails();
@@ -47,7 +50,7 @@ export class CoinDetailsComponent implements OnInit {
   }
 
   setUpHistoric(){
-    this.monthChart = new Chart("month", {
+    this.chart = new Chart("chart", {
       type: "line",
       data: {
         labels: new Array(30), 
@@ -73,52 +76,28 @@ export class CoinDetailsComponent implements OnInit {
   toggleHistoric(){
     this.monthAndNotDay = !this.monthAndNotDay;
     if(this.monthAndNotDay){
-      this.monthChart.data.datasets.forEach(dataset => {
+      this.chart.data.datasets.forEach(dataset => {
         dataset.data = this.monthData;
-        dataset.backgroundColor = "rgba(29, 71, 111, 0.2)"; 
-        dataset.borderColor = "rgba(29, 71, 111, 1)";
+        dataset.backgroundColor = "rgba(73, 68, 201, 0.2)"; 
+        dataset.borderColor = "rgba(73, 68, 201, 1)";
       });
-      this.monthChart.data.labels = new Array(30);
+      this.chart.data.labels = new Array(30);
+      this.graphTitle = "Monthly historic";
     }
 
     else{
-      this.monthChart.data.labels = new Array(24);
-      this.monthChart.data.datasets.forEach(dataset => {
+      this.chart.data.labels = new Array(24);
+      this.chart.data.datasets.forEach(dataset => {
         dataset.data = this.dayData;
-        dataset.backgroundColor = "rgba(255, 99, 132, 0.2)"; 
-        dataset.borderColor = "rgba(255, 99, 132, 1)";
+        dataset.backgroundColor = "rgba(201, 143, 6, 0.2)"; 
+        dataset.borderColor = "rgba(201, 143, 6, 1)";
       });
+      
+      this.graphTitle = "Daily historic";
     }
-    this.monthChart.update();
-    console.log(this.monthChart.data);
+    this.chart.update();
   }
 
-/*
-  getData(){
-    const DATA_COUNT = 13;
-    const labels = [];
-    for (let i = 0; i < DATA_COUNT; ++i) {
-      labels.push(i.toString());
-    }
-    const datapoints = [0, 20, 20, 60, 60, 120, 130, 180, 120, 125, 105, 110, 170];
-    this.data = {
-      labels: labels,
-      datasets: [
-        {
-          label: 'Cubic interpolation (monotone)',
-          data: datapoints,
-          borderColor: '#FF0000',
-          fill: false,
-          cubicInterpolationMode: 'monotone',
-          tension: 0.4
-        }
-      ]
-    };
-  }
-*/
-  initializaCanvas(){
-    
-  }
 
   buy(){
     let dataObject: NavigationExtras = {

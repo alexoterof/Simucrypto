@@ -18,6 +18,9 @@ import { ToastModule } from 'primeng/toast';
 import { BuyCoinComponent } from './pages/buy-coin/buy-coin/buy-coin.component';
 import { WalletComponent } from './pages/wallet/wallet/wallet.component';
 import { TableModule } from 'primeng/table';
+import { MyCommunitiesComponent } from './pages/communities/my-communities/my-communities.component';
+import { AllCommunitiesComponent } from './pages/communities/all-communities/all-communities.component';
+import { NewCommunityComponent } from './pages/communities/new-community/new-community.component';
 
 
 @NgModule({
@@ -40,6 +43,9 @@ import { TableModule } from 'primeng/table';
     RegisterPageComponent,
     BuyCoinComponent,
     WalletComponent,
+    MyCommunitiesComponent,
+    AllCommunitiesComponent,
+    NewCommunityComponent,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, 

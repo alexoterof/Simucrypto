@@ -71,24 +71,26 @@
               left: 0;
               width: 0%;
               height: 100%;
-              background-color: darken(#8ba3b1, 15%);
-              transition: all .3s;
+              background-color: #61cea4;
+              transition: all .4s;
               border-radius: 10rem;
               z-index: -1;
             }
             &:hover {
-              color: #fff;
+              color: rgb(0, 0, 0);
               &:before {
                 width: 100%;
               }
             }
           }
           .login-button::after {
-              background-color: #5aa1c2;
-            }
-            
-            .register-button{
-              background-color: #C27B5A;
+            background-color: #5aa1c2;
+          }
+          .register-button{
+            background-color: #4558c5;
+          }
+          .delete-button{
+            background-color: #c54556;
           }
         .button:hover{
             cursor: pointer;

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BuyOrder } from 'src/app/model/buy-order';
-import { CoinDetails } from 'src/app/model/coin-detail';
+import { CoinDetails } from 'src/app/model/coin/coin-detail';
 import { WalletMin } from 'src/app/model/wallet-min';
 import { OrderService } from 'src/app/services/order/order.service';
 import { WalletService } from 'src/app/services/wallet/wallet.service';
@@ -28,7 +28,7 @@ export class BuyCoinComponent implements OnInit {
     this.coin = new CoinDetails();
     this.route.queryParams.subscribe(params => { 
       this.coin = JSON.parse(params['data']); 
-      this.buyOrder.coinname = this.coin.name;
+      this.buyOrder.coinname = this.coin.id;
     });
     this.walletService.findWallets().subscribe(
       (response) => {
@@ -46,8 +46,6 @@ export class BuyCoinComponent implements OnInit {
 
   buy(){
     this.buyOrder.paymentMethod = this.paymentMethod.coinname;
-    console.log(this.coin);
-    console.log(this.buyOrder);
     this.orderService.buy(this.buyOrder).subscribe(
       (response) => {
         this.router.navigate(['wallet']);

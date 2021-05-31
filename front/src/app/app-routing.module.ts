@@ -7,6 +7,9 @@ import { LoginPageComponent } from './pages/login/login-page/login-page.componen
 import { RegisterPageComponent } from './pages/login/register-page/register-page.component';
 import { BuyCoinComponent } from './pages/buy-coin/buy-coin/buy-coin.component';
 import { WalletComponent } from './pages/wallet/wallet/wallet.component';
+import { MyCommunitiesComponent } from './pages/communities/my-communities/my-communities.component';
+import { AllCommunitiesComponent } from './pages/communities/all-communities/all-communities.component';
+import { NewCommunityComponent } from './pages/communities/new-community/new-community.component';
 
 
 const routes: Routes = [
@@ -16,7 +19,10 @@ const routes: Routes = [
   { path: 'login', component: LoginPageComponent},
   { path: 'register', component: RegisterPageComponent},
   { path: 'buy', component: BuyCoinComponent},
-  { path: 'wallet', component: WalletComponent }
+  { path: 'wallet', component: WalletComponent },
+  { path: 'communities/my', component: MyCommunitiesComponent },
+  { path: 'communities/all', component: AllCommunitiesComponent },
+  { path: 'communities/new', component: NewCommunityComponent },
 ];
 
 @NgModule({

@@ -1,33 +1,28 @@
-<a routerLink="/landing">Back home</a>
-<div>
-    <img src="{{coin.image}}">
-</div>
-<div>
-    <p>Name: {{coin.name}}</p>
-</div>
-<div>
-    <p>Current price: {{coin.current_price}}€</p>
-</div>
-<div>
-    <p>Last 24h: {{coin.price_change_24h}}</p>
-</div>
-<div>
-    <p>Market capitalizacion: {{coin.market_cap}}€</p>
+
+<button pButton label="Back" icon="pi pi-chevron-left" class="p-button-warning" routerLink="/landing"></button>
+<div class="details">
+    <div class="details-img">
+        <img src="{{coin.image}}">
+    </div>
+    <div class="details-data">
+        <span class="title">{{coin.name}}</span>
+        <span>Current price: {{coin.current_price}}€</span>
+        <span>24h change: {{coin.price_change_24h}}€</span>
+        <span>Market cap.: {{coin.market_cap}}€</span>
+    </div>
+
 </div>
 
-
-<button pButton type="button" label="Try me!" (click)="toggleHistoric()"></button>
-
-<div *ngIf="monthAndNotDay">
-    <h3>Month data</h3>
+<div class="historic">
+    <span>{{graphTitle}}   <p-button icon="pi pi-refresh" class="toggle-button" (click)="toggleHistoric()"></p-button></span>
+    
+    
+    <div style="display: block; width: 100%">
+        <canvas id="chart" height="200">{{ chart }}</canvas>
+    </div>
+    <br>
 </div>
-<div *ngIf="!monthAndNotDay">
-    <h3>Day data</h3>
-</div>
-<div style="display: block; width: 400px">
-    <canvas id="month" height="200">{{ monthChart }}</canvas>
-</div>
-<br>
 
-
-<button pButton type="button" label="Buy!" (click)="buy()"></button>
+<div class="center">
+    <button pButton type="button" label="Buy!" (click)="buy()"></button>
+</div>

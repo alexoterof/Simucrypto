@@ -22,4 +22,8 @@ export class UserService {
   detail(username: string){
     return this.http.get<UserDetailDto>(`${this.urlEndPoint}/detail/${username}`);
   }
+  
+  delete(){
+    return this.http.get<any>(`${this.urlEndPoint}/delete`);
+  }
 }
