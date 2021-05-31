@@ -49,6 +49,7 @@ public class BuyOrderServiceImpl implements IBuyOrderService{
 	@Override
 	public void place(BuyOrderPlacementDto input) {
 		User user = userDao.findByUsername(input.getUsername()).get(0);
+		
 		Coin coin = cryptoDao.findByName(input.getCoinname()).get(0);
 		BuyOrder buyOrder = getBuyOrder(user, coin, input.getAmmount());
 		orderDao.save(buyOrder);

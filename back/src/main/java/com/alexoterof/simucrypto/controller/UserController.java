@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.alexoterof.simucrypto.dto.response.JwtDto;
+import com.alexoterof.simucrypto.dto.JwtDto;
 import com.alexoterof.simucrypto.dto.user.UserDetailDto;
 import com.alexoterof.simucrypto.dto.user.UserMinDto;
 import com.alexoterof.simucrypto.service.IUserService;
@@ -35,6 +35,12 @@ public class UserController {
 	@PostMapping("login")
 	public ResponseEntity<JwtDto> login(@RequestBody UserMinDto input){
 		return ResponseEntity.ok(userService.login(input));
+	}
+	
+	@GetMapping("delete")
+	public ResponseEntity<Void> delete(Principal principal){
+		userService.delete(principal.getName());
+		return ResponseEntity.ok(null);
 	}
 	
 	@GetMapping("detail")

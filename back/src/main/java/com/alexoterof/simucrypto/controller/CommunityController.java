@@ -1,5 +1,41 @@
 package com.alexoterof.simucrypto.controller;
 
-public class CommunityController {
+import java.security.Principal;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.alexoterof.simucrypto.dto.community.CommunityDto;
+import com.alexoterof.simucrypto.dto.community.CommunityMinDto;
+import com.alexoterof.simucrypto.service.ICommunityService;
+
+@CrossOrigin(origins = "*", allowedHeaders = "*")
+@RestController
+@RequestMapping("/community")
+public class CommunityController {
+	@Autowired
+	ICommunityService communityService;
+	
+	@GetMapping("all")
+	public ResponseEntity<List<CommunityMinDto>> findAll(){
+		return ResponseEntity.ok(communityService.findAll());
+	}
+	
+	@GetMapping("mine")
+	public ResponseEntity<List<CommunityMinDto>> findByUser(Principal principal){
+		return ResponseEntity.ok(communityService.findByUsername(principal.getName()));
+	}
+	
+	@PostMapping("create")
+	public ResponseEntity<Void> create(@RequestBody CommunityDto input){
+		communityService.create(input);
+		return ResponseEntity.ok(null);
+	}
 }

@@ -3,13 +3,15 @@ package com.alexoterof.simucrypto.service.impl;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.alexoterof.simucrypto.configuration.JwtHelper;
-import com.alexoterof.simucrypto.dto.response.JwtDto;
+import com.alexoterof.simucrypto.dto.JwtDto;
 import com.alexoterof.simucrypto.dto.user.UserDetailDto;
 import com.alexoterof.simucrypto.dto.user.UserMinDto;
 import com.alexoterof.simucrypto.model.User;
@@ -63,6 +65,12 @@ public class UserServiceImpl implements IUserService {
 		
 		String jwt = jwtHelper.createJwtForClaims(user.getUsername(), claims);
 		return new JwtDto(jwt);		
+	}
+	
+	@Override
+	@Transactional
+	public void delete(String username) {
+		userDao.deleteByUsername(username);			
 	}
 	
 	private UserDetailDto convertToDetailDto(User entity) {

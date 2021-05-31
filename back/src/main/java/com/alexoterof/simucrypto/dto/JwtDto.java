@@ -1,4 +1,4 @@
-package com.alexoterof.simucrypto.dto.response;
+package com.alexoterof.simucrypto.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

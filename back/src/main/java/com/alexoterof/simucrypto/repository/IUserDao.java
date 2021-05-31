@@ -11,5 +11,6 @@ import com.alexoterof.simucrypto.model.User;
 public interface IUserDao extends JpaRepository<User, Long>{
 
 	public List<User> findByUsername(String username);
+	public void deleteByUsername(String username);
 
 }

@@ -64,7 +64,14 @@ public class Community implements Serializable{
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="community", orphanRemoval=true)
     private Set<Message> messages;
 	
-	public void setMessages(Set<Message> newMessages) {
+	public void addMessage(Message message) {
+		if(this.messages == null)
+			this.messages = new HashSet<Message>();
+		if(message != null)
+			this.messages.add(message);
+	}
+	
+	public void setMessages(Set<Message> newMessages) { 
 		if(this.messages == null)
 			this.messages = new HashSet<Message>();
 		this.messages.clear();
