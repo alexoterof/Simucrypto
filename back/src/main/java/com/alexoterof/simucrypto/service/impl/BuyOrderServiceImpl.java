@@ -14,9 +14,9 @@ import com.alexoterof.simucrypto.model.User;
 import com.alexoterof.simucrypto.repository.IBuyOrderDao;
 import com.alexoterof.simucrypto.repository.ICoinDao;
 import com.alexoterof.simucrypto.repository.IUserDao;
-import com.alexoterof.simucrypto.service.IBuyOrderService;
-import com.alexoterof.simucrypto.service.ICoinService;
-import com.alexoterof.simucrypto.service.IWalletService;
+import com.alexoterof.simucrypto.service.interfaces.IBuyOrderService;
+import com.alexoterof.simucrypto.service.interfaces.ICoinService;
+import com.alexoterof.simucrypto.service.interfaces.IWalletService;
 
 @Service
 public class BuyOrderServiceImpl implements IBuyOrderService{
@@ -40,7 +40,7 @@ public class BuyOrderServiceImpl implements IBuyOrderService{
 	
 	@Override
 	public void refill(String username, Double ammount) {
-		User user = userDao.findByUsername(username).get(0);
+		User user = userDao.findByUsername(username);
 		BuyOrder buyOrder = getBuyOrder(user, entityManager.getReference(Coin.class, 1L), ammount);
 		orderDao.save(buyOrder);
 		walletService.refill(username, ammount);
@@ -48,7 +48,7 @@ public class BuyOrderServiceImpl implements IBuyOrderService{
 	
 	@Override
 	public void place(BuyOrderPlacementDto input) {
-		User user = userDao.findByUsername(input.getUsername()).get(0);
+		User user = userDao.findByUsername(input.getUsername());
 		
 		Coin coin = cryptoDao.findByName(input.getCoinname()).get(0);
 		BuyOrder buyOrder = getBuyOrder(user, coin, input.getAmmount());

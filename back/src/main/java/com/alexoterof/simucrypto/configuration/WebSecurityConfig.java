@@ -23,16 +23,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         	.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             .and()
             .authorizeRequests(configurer ->
-                  		configurer
-                        .antMatchers(
-	                              "/error",
-	                              "/user/login",
-	                              "/user/register"
-                        			)
-                        .permitAll()
-            .anyRequest()
-            .authenticated()
-            )
+      		configurer
+            .antMatchers(
+                      "/error",
+                      "/user/login",
+                      "/user/register",
+                      "/socket/**",
+                      "/app/send/message"
+            			)
+            .permitAll()
+			.anyRequest()
+			.authenticated()
+			)
             .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt);
     }
     

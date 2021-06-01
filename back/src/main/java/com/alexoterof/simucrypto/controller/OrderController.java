@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alexoterof.simucrypto.dto.buyorder.BuyOrderPlacementDto;
-import com.alexoterof.simucrypto.service.IBuyOrderService;
+import com.alexoterof.simucrypto.service.interfaces.IBuyOrderService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController

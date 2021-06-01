@@ -16,7 +16,7 @@ import com.alexoterof.simucrypto.dto.user.UserDetailDto;
 import com.alexoterof.simucrypto.dto.user.UserMinDto;
 import com.alexoterof.simucrypto.model.User;
 import com.alexoterof.simucrypto.repository.IUserDao;
-import com.alexoterof.simucrypto.service.IUserService;
+import com.alexoterof.simucrypto.service.interfaces.IUserService;
 import com.googlecode.jmapper.JMapper;
 
 @Service
@@ -33,12 +33,12 @@ public class UserServiceImpl implements IUserService {
 	
 	@Override
 	public UserDetailDto getDetailOf(String username) {
-		return convertToDetailDto(userDao.findByUsername(username).get(0));
+		return convertToDetailDto(userDao.findByUsername(username));
 	}
 
 	@Override
 	public void register(UserMinDto input) {
-		if(userDao.findByUsername(input.getUsername()).size() != 0) {
+		if(userDao.findByUsername(input.getUsername()) != null) {
 			throw new RuntimeException("User already exists");
 		}
 		User user = new User();
@@ -53,7 +53,7 @@ public class UserServiceImpl implements IUserService {
 		   input.getUsername() == null || 
 		   input.getPassword() == null)
 			throw new RuntimeException("Null input");
-		User user = userDao.findByUsername(input.getUsername()).get(0);
+		User user = userDao.findByUsername(input.getUsername());
 		if(user == null)
 			throw new RuntimeException("User not found");
 		if(!passwordEncoder.matches(input.getPassword(), user.getPassword()))

@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.alexoterof.simucrypto.dto.JwtDto;
 import com.alexoterof.simucrypto.dto.user.UserDetailDto;
 import com.alexoterof.simucrypto.dto.user.UserMinDto;
-import com.alexoterof.simucrypto.service.IUserService;
+import com.alexoterof.simucrypto.service.interfaces.IUserService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController

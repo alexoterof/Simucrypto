@@ -18,7 +18,7 @@ import com.alexoterof.simucrypto.dto.cypto.gecko.CryptoMinDto;
 import com.alexoterof.simucrypto.dto.cypto.gecko.HistoricCryptoDto;
 import com.alexoterof.simucrypto.dto.cypto.gecko.TinyDto;
 import com.alexoterof.simucrypto.model.Coin;
-import com.alexoterof.simucrypto.service.ICoinService;
+import com.alexoterof.simucrypto.service.interfaces.ICoinService;
 
 
 

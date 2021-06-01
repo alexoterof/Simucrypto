@@ -1,4 +1,4 @@
-package com.alexoterof.simucrypto.service;
+package com.alexoterof.simucrypto.service.interfaces;
 
 import java.util.List;
 

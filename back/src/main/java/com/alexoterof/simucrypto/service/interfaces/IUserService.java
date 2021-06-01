@@ -1,4 +1,4 @@
-package com.alexoterof.simucrypto.service;
+package com.alexoterof.simucrypto.service.interfaces;
 
 import com.alexoterof.simucrypto.dto.JwtDto;
 import com.alexoterof.simucrypto.dto.user.UserDetailDto;

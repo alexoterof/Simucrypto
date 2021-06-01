@@ -16,8 +16,8 @@ import com.alexoterof.simucrypto.model.Wallet;
 import com.alexoterof.simucrypto.repository.ICoinDao;
 import com.alexoterof.simucrypto.repository.IUserDao;
 import com.alexoterof.simucrypto.repository.IWalletDao;
-import com.alexoterof.simucrypto.service.ICoinService;
-import com.alexoterof.simucrypto.service.IWalletService;
+import com.alexoterof.simucrypto.service.interfaces.ICoinService;
+import com.alexoterof.simucrypto.service.interfaces.IWalletService;
 import com.googlecode.jmapper.JMapper;
 
 @Service
@@ -81,7 +81,7 @@ public class WalletServiceImpl implements IWalletService {
 	
 	private Wallet createWallet(String username, String coinname) {
 		Wallet creatingWallet = new Wallet();
-		creatingWallet.setUser(userDao.findByUsername(username).get(0));
+		creatingWallet.setUser(userDao.findByUsername(username));
 		creatingWallet.setCoin(coinDao.findByName(coinname).get(0));
 		return creatingWallet;
 	}

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.alexoterof.simucrypto.dto.cypto.gecko.CryptoDetailDto;
 import com.alexoterof.simucrypto.dto.cypto.gecko.CryptoMinDto;
 import com.alexoterof.simucrypto.dto.cypto.gecko.HistoricCryptoDto;
-import com.alexoterof.simucrypto.service.ICoinService;
+import com.alexoterof.simucrypto.service.interfaces.ICoinService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController

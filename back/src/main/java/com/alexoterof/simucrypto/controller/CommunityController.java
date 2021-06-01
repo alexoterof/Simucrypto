@@ -3,8 +3,11 @@ package com.alexoterof.simucrypto.controller;
 import java.security.Principal;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.alexoterof.simucrypto.dto.community.CommunityDto;
 import com.alexoterof.simucrypto.dto.community.CommunityMinDto;
-import com.alexoterof.simucrypto.service.ICommunityService;
+import com.alexoterof.simucrypto.service.interfaces.ICommunityService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
@@ -34,8 +37,8 @@ public class CommunityController {
 	}
 	
 	@PostMapping("create")
-	public ResponseEntity<Void> create(@RequestBody CommunityDto input){
-		communityService.create(input);
+	public ResponseEntity<Void> create(Principal principal, @RequestBody CommunityDto input){
+		communityService.create(input, principal.getName());
 		return ResponseEntity.ok(null);
 	}
 }

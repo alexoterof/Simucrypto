@@ -1,4 +1,4 @@
-package com.alexoterof.simucrypto.service;
+package com.alexoterof.simucrypto.service.interfaces;
 
 import java.util.List;
 
@@ -11,6 +11,6 @@ public interface ICommunityService {
 
 	public List<CommunityMinDto> findByUsername(String username);
 
-	public void create(CommunityDto input);
+	public void create(CommunityDto input, String creatorUsername);
 	
 }

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alexoterof.simucrypto.dto.wallet.WalletDto;
-import com.alexoterof.simucrypto.service.IWalletService;
+import com.alexoterof.simucrypto.service.interfaces.IWalletService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController

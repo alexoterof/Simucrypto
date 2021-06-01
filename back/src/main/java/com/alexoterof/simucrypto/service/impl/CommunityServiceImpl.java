@@ -16,14 +16,18 @@ import com.alexoterof.simucrypto.model.Community;
 import com.alexoterof.simucrypto.model.User;
 import com.alexoterof.simucrypto.repository.ICommunityDao;
 import com.alexoterof.simucrypto.repository.ICommunityJdbcRepository;
-import com.alexoterof.simucrypto.service.ICommunityService;
-import com.alexoterof.simucrypto.service.IUserCommunityService;
+import com.alexoterof.simucrypto.repository.IUserDao;
+import com.alexoterof.simucrypto.service.interfaces.ICommunityService;
+import com.alexoterof.simucrypto.service.interfaces.IUserCommunityService;
 import com.googlecode.jmapper.JMapper;
 
 @Service
 public class CommunityServiceImpl implements ICommunityService {
 	@Autowired
 	ICommunityDao comJpaDao;
+	
+	@Autowired
+	IUserDao userDao;
 	
 	@Autowired
 	ICommunityJdbcRepository comJdbcDao;
@@ -49,12 +53,13 @@ public class CommunityServiceImpl implements ICommunityService {
 	
 	@Override
 	@Transactional
-	public void create(CommunityDto input) {
+	public void create(CommunityDto input, String creatorUsername) {
 		Community community = new Community();
+		User creator = userDao.findByUsername(creatorUsername);
 		BeanUtils.copyProperties(input, community);
-		community.setCreator(entityManager.getReference(User.class, input.getCreatorId()));
-		community = comJpaDao.save(community);
-		userCommunityService.addUser(community.getId(), input.getCreatorId());
+		community.setCreator(creator);
+		comJpaDao.save(community);
+		userCommunityService.addUser(community.getId(), creator.getId());
 	}
 	
 	private CommunityMinDto convertToDto(Community entity) {
