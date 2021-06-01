@@ -21,6 +21,7 @@ import { TableModule } from 'primeng/table';
 import { MyCommunitiesComponent } from './pages/communities/my-communities/my-communities.component';
 import { AllCommunitiesComponent } from './pages/communities/all-communities/all-communities.component';
 import { NewCommunityComponent } from './pages/communities/new-community/new-community.component';
+import { CommunityDetailComponent } from './pages/communities/community-detail/community-detail.component';
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import { NewCommunityComponent } from './pages/communities/new-community/new-com
     MyCommunitiesComponent,
     AllCommunitiesComponent,
     NewCommunityComponent,
+    CommunityDetailComponent,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, 

@@ -10,6 +10,7 @@ import { WalletComponent } from './pages/wallet/wallet/wallet.component';
 import { MyCommunitiesComponent } from './pages/communities/my-communities/my-communities.component';
 import { AllCommunitiesComponent } from './pages/communities/all-communities/all-communities.component';
 import { NewCommunityComponent } from './pages/communities/new-community/new-community.component';
+import { CommunityDetailComponent } from './pages/communities/community-detail/community-detail.component';
 
 
 const routes: Routes = [
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'communities/my', component: MyCommunitiesComponent },
   { path: 'communities/all', component: AllCommunitiesComponent },
   { path: 'communities/new', component: NewCommunityComponent },
+  { path: 'communities/room/:id', component: CommunityDetailComponent},
 ];
 
 @NgModule({

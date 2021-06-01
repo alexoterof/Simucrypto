@@ -1,0 +1,18 @@
+<div>
+    <h2>CHAT</h2>
+    <p *ngFor="let m of messages">
+        {{m}}
+    </p>
+</div>
+
+
+
+
+
+<input class="form-control" type="text" placeholder="message" [(ngModel)]="input">
+<button class="btn btn-success" (click)="sendMessage()">Send</button>
+<div class="content">
+  <div *ngFor="let msg of chatService.msg">
+    {{msg}}
+  </div>
+</div>

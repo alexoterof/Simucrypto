@@ -1,8 +1,8 @@
 
 <h2>Create new Community</h2>
 <div class="input-container">
-    <input type="text" placeholder="Name">
-    <input type="text" placeholder="Description">
+    <input type="text" placeholder="Name" [(ngModel)]="community.name">
+    <input type="text" placeholder="Description" [(ngModel)]="community.description">
 
 </div>
 
@@ -13,3 +13,6 @@
     <button pButton type="button " label="Cancel" class="p-button-round p-button-info" routerLink="/communities/my"></button>
     <button pButton type="button" label="Back home" class="p-button-round p-button-secondary" routerLink="/landing"></button>
 </div>
+
+
+<p-toast position="bottom-center"></p-toast>
