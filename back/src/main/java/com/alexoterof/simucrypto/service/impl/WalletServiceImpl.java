@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.alexoterof.simucrypto.dto.buyorder.BuyOrderPlacementDto;
 import com.alexoterof.simucrypto.dto.wallet.WalletDto;
 import com.alexoterof.simucrypto.model.Coin;
+import com.alexoterof.simucrypto.model.User;
 import com.alexoterof.simucrypto.model.Wallet;
 import com.alexoterof.simucrypto.repository.ICoinDao;
 import com.alexoterof.simucrypto.repository.IUserDao;
@@ -52,6 +53,16 @@ public class WalletServiceImpl implements IWalletService {
 		walletDao.save(targetWallet);
 	}
 	
+	public void delete(String username, Long walletId) {
+		User user = userDao.findByUsername(username);
+		user.getWallets().forEach(wallet -> {
+			if(wallet.getId() == walletId) {
+				walletDao.delete(walletId);
+				System.out.println("Deleted wallet " + walletId);
+			}
+		});
+	}
+	
 	@Override
 	public void place(BuyOrderPlacementDto input) {	
 		Coin payCoin = coinDao.findByName(input.getPaymentMethod()).get(0);
@@ -64,7 +75,7 @@ public class WalletServiceImpl implements IWalletService {
 		Wallet targetWallet = getWallet(username, targetCoin.getName());
 		if(paymentWallet.getCash() < ammount / conversionRate)
 			throw new RuntimeException("Not enough money to perform this transaction");				
-		paymentWallet.setCash(paymentWallet.getCash() - (ammount / conversionRate));
+		paymentWallet.setCash(paymentWallet.getCash() - (ammount / conversionRate));	
 		targetWallet.setCash(targetWallet.getCash() + ammount);		
 		walletDao.save(targetWallet);
 	}	

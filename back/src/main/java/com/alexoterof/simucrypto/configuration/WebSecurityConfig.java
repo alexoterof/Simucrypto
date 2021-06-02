@@ -29,7 +29,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                       "/user/login",
                       "/user/register",
                       "/socket/**",
-                      "/app/send/message"
+                      "/app/send/message/**"
             			)
             .permitAll()
 			.anyRequest()

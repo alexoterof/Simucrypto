@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { MessageDto } from 'src/app/model/message-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,12 @@ export class ChatService {
   constructor() {
     this.initializeWebSocketConnection();
   }
+
   public stompClient;
-  public msg = [];
+
+  public msg: String[] = [];
+
+
   initializeWebSocketConnection() {
     const serverUrl = 'http://localhost:8080/socket';
     const ws = new SockJS(serverUrl);

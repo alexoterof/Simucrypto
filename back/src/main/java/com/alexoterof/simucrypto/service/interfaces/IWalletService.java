@@ -9,5 +9,6 @@ public interface IWalletService{
 	public List<WalletDto> findAllByUsername(String username);
 	public void place(BuyOrderPlacementDto input);
 	public void refill(String username, Double ammount);
+	public void delete(String username, Long walletId);
 	
 }

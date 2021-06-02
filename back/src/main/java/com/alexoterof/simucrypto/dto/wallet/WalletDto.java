@@ -13,6 +13,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @JGlobalMap
 public class WalletDto {
+	private Long id;
 	private String coinname;
 	private Double cash;
 }

@@ -22,4 +22,8 @@ export class CommunityService {
   create(dto: any){
     return this.http.post<any>(`${this.urlEndPoint}/create`, dto);  
   }
+
+  join(id: number){
+    return this.http.get(`${this.urlEndPoint}/join/${id}`)
+  }
 }

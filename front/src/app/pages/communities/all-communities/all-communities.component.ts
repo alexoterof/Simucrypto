@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Community } from 'src/app/model/community';
 import { CommunityService } from 'src/app/services/community/community.service';
 
@@ -10,7 +11,8 @@ import { CommunityService } from 'src/app/services/community/community.service';
 export class AllCommunitiesComponent implements OnInit {
   communities: Community[];
 
-  constructor(private communityService: CommunityService) { }
+  constructor(private communityService: CommunityService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.communityService.findAll().subscribe(
@@ -23,5 +25,14 @@ export class AllCommunitiesComponent implements OnInit {
     )
   }
 
-  detailOf(community: Community){}
+  joinCommunity(joinCommunity: Community){
+    this.communityService.join(joinCommunity.id).subscribe(
+      (response) => {
+        this.router.navigateByUrl("communities/my");
+      },
+      (error) => {
+
+      }
+    )
+  }
 }

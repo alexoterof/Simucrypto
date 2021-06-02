@@ -14,4 +14,8 @@ export class WalletService {
   findWallets() {
     return this.http.get<WalletMin[]>(`${this.urlEndPoint}/mywallets`)  
   }
+
+  delete(id: number){
+    return this.http.get(`${this.urlEndPoint}/delete/${id}`)
+  }
 }

@@ -15,6 +15,8 @@ export class OrderService {
   }
 
   buy(order: BuyOrder){
+    console.log("order");
+    console.log(order);
     return this.http.post(`${this.urlEndPoint}/place`, order);
   }
 }

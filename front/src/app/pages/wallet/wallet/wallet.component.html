@@ -10,7 +10,7 @@
             <span class="name">{{wallet.coinname}}</span>
             <span class="quantity">{{wallet.cash}}</span>
             <div *ngIf="wallet.coinname != 'eur'" class="actions">
-                <span ><button pButton pRipple type="button" icon="pi pi-eject" class="p-button-rounded p-button-help"></button></span>
+                <span ><button pButton pRipple type="button" icon="pi pi-eject" class="p-button-rounded p-button-help" (click)="sell(wallet)"></button></span>
             </div>
         </div>
     </div>

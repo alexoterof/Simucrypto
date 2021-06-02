@@ -3,6 +3,7 @@ package com.alexoterof.simucrypto.service.impl;
 import java.time.Instant;
 
 import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,6 +40,7 @@ public class BuyOrderServiceImpl implements IBuyOrderService{
 	ICoinService cryptoService;
 	
 	@Override
+	@Transactional
 	public void refill(String username, Double ammount) {
 		User user = userDao.findByUsername(username);
 		BuyOrder buyOrder = getBuyOrder(user, entityManager.getReference(Coin.class, 1L), ammount);
@@ -47,6 +49,7 @@ public class BuyOrderServiceImpl implements IBuyOrderService{
 	}
 	
 	@Override
+	@Transactional
 	public void place(BuyOrderPlacementDto input) {
 		User user = userDao.findByUsername(input.getUsername());
 		

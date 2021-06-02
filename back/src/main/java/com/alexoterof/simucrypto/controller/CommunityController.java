@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.alexoterof.simucrypto.dto.community.CommunityDto;
 import com.alexoterof.simucrypto.dto.community.CommunityMinDto;
 import com.alexoterof.simucrypto.service.interfaces.ICommunityService;
+import com.alexoterof.simucrypto.service.interfaces.IUserCommunityService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
@@ -25,6 +27,9 @@ import com.alexoterof.simucrypto.service.interfaces.ICommunityService;
 public class CommunityController {
 	@Autowired
 	ICommunityService communityService;
+	
+	@Autowired
+	IUserCommunityService userCommunityService;
 	
 	@GetMapping("all")
 	public ResponseEntity<List<CommunityMinDto>> findAll(){
@@ -40,5 +45,12 @@ public class CommunityController {
 	public ResponseEntity<Void> create(Principal principal, @RequestBody CommunityDto input){
 		communityService.create(input, principal.getName());
 		return ResponseEntity.ok(null);
+	}
+	
+	@GetMapping("join/{id}")
+	public ResponseEntity<Void> create(Principal principal, @PathVariable Long id){
+		userCommunityService.addUser(principal.getName(), id);
+		
+		return null;
 	}
 }

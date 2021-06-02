@@ -46,6 +46,8 @@ export class BuyCoinComponent implements OnInit {
 
   buy(){
     this.buyOrder.paymentMethod = this.paymentMethod.coinname;
+    console.log("Buy coin");
+    console.log(this.buyOrder);
     this.orderService.buy(this.buyOrder).subscribe(
       (response) => {
         this.router.navigate(['wallet']);

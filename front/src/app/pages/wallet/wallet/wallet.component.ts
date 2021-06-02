@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BuyOrder } from 'src/app/model/buy-order';
 import { WalletMin } from 'src/app/model/wallet-min';
 import { CoinService } from 'src/app/services/coin/coin.service';
 import { OrderService } from 'src/app/services/order/order.service';
@@ -62,6 +63,31 @@ export class WalletComponent implements OnInit {
         console.log(error);
       }
     )
+  }
+
+  sell(sellingwallet: WalletMin){
+    this.cryptoService.findAllPrices().subscribe(
+      (coinsPrices) => {
+        console.log(coinsPrices);
+        console.log(sellingwallet);
+        coinsPrices.forEach(coin => {
+          if(coin.name != sellingwallet.coinname)
+            return;
+          let order = new BuyOrder();
+          order.ammount = <number><any> (coin.price * sellingwallet.cash).toFixed(5);
+          order.coinname = "eur";
+          order.paymentMethod = sellingwallet.coinname;
+          ;
+          this.orderService.buy(order).subscribe(() => this.walletService.delete(sellingwallet.id).subscribe(() => this.fetchWallets()));
+          
+        })
+        
+      }, 
+      (error) => {
+        console.log(error);
+      }
+    )
+
   }
 
 }
