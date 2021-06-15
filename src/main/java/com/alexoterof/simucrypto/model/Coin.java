@@ -18,7 +18,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @Entity
 public class Coin implements Serializable{
 	/**
@@ -26,6 +25,16 @@ public class Coin implements Serializable{
 	 */
 	private static final long serialVersionUID = 4220483554711089625L;
 
+	public Coin() {
+		
+	}
+	
+	public Coin(Long id, String name, String symbol) {
+		this.id = id;
+		this.name = name;
+		this.symbol = symbol;
+	}
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
