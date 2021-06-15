@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  apiHost: 'http://localhost:8080/',
+  apiHost: 'https://simucrypto.herokuapp.com/',
   landingPage: '/landing',
   loginPage: '/login',
 };
