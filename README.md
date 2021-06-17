@@ -15,5 +15,5 @@ maven clean install
 java -jar target/simucrypto-0.0.1-SNAPSHOT.jar
 ```
 
-###Demo
+### Demo
 Una demo funcional de este proyecto (Aún en desarrollo) se encuentra desplegada [aquí.](https://alexoterof.github.io/Simucrypto/) 
