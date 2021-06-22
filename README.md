@@ -16,4 +16,4 @@ java -jar target/simucrypto-0.0.1-SNAPSHOT.jar
 ```
 
 ### Demo
-Una demo funcional de este proyecto (Aún en desarrollo) se encuentra desplegada [aquí.](https://alexoterof.github.io/Simucrypto/) 
+A functional demo of this project (Still work in progress) can be located deployed [here.](https://alexoterof.github.io/Simucrypto/) 
